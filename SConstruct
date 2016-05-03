@@ -1,6 +1,13 @@
-env = Environment(CXXFLAGS='-std=c++14',
-                  CPPPATH='/home/pi/soft/portaudio/install/include',
-                  LIBPATH='/home/pi/soft/portaudio/install/lib')
+import os.path
+
+PORTAUDIO_PATH = '/home/pi/soft/portaudio/install'
+BOOST_PATH = '/home/pi/soft/boost_1_60_0/install'
+
+env = Environment(CXXFLAGS='-std=c++14 -O2',
+                  CPPPATH=[os.path.join(PORTAUDIO_PATH, 'include'),
+                           os.path.join(BOOST_PATH, 'include')],
+                  LIBPATH=[os.path.join(PORTAUDIO_PATH, 'lib'),
+                           os.path.join(BOOST_PATH, 'lib')])
 
 if not env.GetOption('clean'):
   conf = Configure(env)
