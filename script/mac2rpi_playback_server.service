@@ -5,10 +5,9 @@ After=network.target
 [Service]
 User=pi
 Group=pi
-# Complete and uncomment the next two lines
-#Environment=LD_LIBRARY_PATH=<path to required libraries such as portaudio or boost>
-#ExecStart=<path to the server binary>
+Environment=LD_LIBRARY_PATH=/usr/local/lib
+# Insert path to server binary and uncomment line
+# ExecStart=<path to the server binary>
 
 [Install]
 WantedBy=multi-user.target
-
