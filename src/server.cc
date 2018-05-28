@@ -102,7 +102,6 @@ static void session(tcp::socket socket) {
 
       ring_buffer.push(begin(buffer), end(buffer));
     }
-
   } catch (const std::exception& e) {
     std::cerr << boost::format("Exception in thread: %1%\n") % e.what();
   }
@@ -133,4 +132,3 @@ int main() {
 
   return 0;
 }
-
