@@ -154,21 +154,21 @@ private:
     std::array<char, NETWORK_BUFFER_SIZE> data_;
 
     void do_receive() {
-        asio::async_read(
-            socket_,
-            asio::buffer(data_),
-            asio::transfer_at_least(NETWORK_BUFFER_SIZE),
-            [this](
-                boost::system::error_code error_code,
-                std::size_t length
-            ) {
-                if (error_code) {
-                    std::cerr << "error receiving data: " << error_code << std::endl;
-                } else {
-                    std::cout << boost::format("data received: %1%\n") % length;
-                }
-            }
-        );
+//        asio::async_read(
+//            socket_,
+//            asio::buffer(data_),
+//            asio::transfer_at_least(NETWORK_BUFFER_SIZE),
+//            [this](
+//                boost::system::error_code error_code,
+//                std::size_t length
+//            ) {
+//                if (error_code) {
+//                    std::cerr << "error receiving data: " << error_code << std::endl;
+//                } else {
+//                    std::cout << boost::format("data received: %1%\n") % length;
+//                }
+//            }
+//        );
 
 //        socket_.receive_from(
 //                asio::buffer(data_),
@@ -176,17 +176,17 @@ private:
 //                asio::transfer_at_least(NETWORK_BUFFER_SIZE)
 //            )
 //
-//        socket_.async_receive_from(
-//            asio::buffer(data_),
-//            sender_endpoint_,
-//            [this](boost::system::error_code error_code, std::size_t length) {
-//                if (error_code) {
-//                    std::cerr << "error receiving data: " << error_code << std::endl;
-//                } else {
-//
-//                }
-//            }
-//        );
+        socket_.async_receive_from(
+            asio::buffer(data_),
+            sender_endpoint_,
+            [this](boost::system::error_code error_code, std::size_t length) {
+                if (error_code) {
+                    std::cerr << "error receiving data: " << error_code << std::endl;
+                } else {
+                    std::cout << boost::format("data received: %1%\n") % length;
+                }
+            }
+        );
     }
 };
 
