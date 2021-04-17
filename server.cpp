@@ -184,6 +184,7 @@ private:
                     std::cerr << "error receiving data: " << error_code << std::endl;
                 } else {
                     std::cout << boost::format("data received: %1%\n") % length;
+                    do_receive();
                 }
             }
         );
@@ -205,7 +206,10 @@ int main() {
             asio::ip::make_address("239.255.0.1"),
             30001
         );
+
+        std::cout << "Listening\n";
         io_service.run();
+        std::cout << "Shutting down\n";
     } catch (const std::exception &e) {
         std::cerr << boost::format("Exception: %1%\n") % e.what();
     }
