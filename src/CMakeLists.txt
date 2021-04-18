@@ -1,4 +1,5 @@
 find_package(Boost COMPONENTS log system REQUIRED)
+add_definitions(-DBOOST_LOG_DYN_LINK)
 
 # TODO: use find_package for PortAudio cpp bindings
 #   when CMake support for them is available.
