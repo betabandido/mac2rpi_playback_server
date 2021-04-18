@@ -57,13 +57,13 @@ private:
             ) {
                 if (error_code) {
                     BOOST_LOG_TRIVIAL(error) << boost::format(
-                        "error receiving data; error_code=%1%\n") % error_code;
+                        "error receiving data; error_code=%1%") % error_code;
 
                     // TODO: shall we treat this as an unrecoverable error?
                     //   If not, we should call do_receive again.
                 } else {
                     BOOST_LOG_TRIVIAL(info) << boost::format(
-                        "data received; length=%1%\n") % length;
+                        "data received; length=%1%") % length;
 
                     player_->AddData(data_.data(), length);
                     do_receive();
