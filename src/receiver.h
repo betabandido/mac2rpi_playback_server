@@ -3,14 +3,13 @@
 
 #include <iostream>
 #include <boost/asio.hpp>
-#include <boost/format.hpp>
 #include <memory>
 
 #include "player.h"
 
 namespace asio = boost::asio;
 
-static constexpr size_t NETWORK_BUFFER_SIZE = 4096;
+static constexpr std::size_t NETWORK_BUFFER_SIZE = 4096;
 
 class receiver {
 public:
