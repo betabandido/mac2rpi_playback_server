@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.13)
 project(mac2rpi_playback_server)
 
 set(CMAKE_CXX_STANDARD 14)
