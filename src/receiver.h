@@ -1,9 +1,12 @@
 #ifndef MAC2RPI_PLAYBACK_SERVER_RECEIVER_H
 #define MAC2RPI_PLAYBACK_SERVER_RECEIVER_H
 
-#include <iostream>
 #include <boost/asio.hpp>
+#include <boost/format.hpp>
+#include <boost/log/trivial.hpp>
+#include <iostream>
 #include <memory>
+#include <utility>
 
 #include "player.h"
 
@@ -21,7 +24,7 @@ public:
         std::shared_ptr<Player> player
     )
         : socket_(io_context)
-        , player_(player) {
+        , player_(std::move(player)) {
         auto listen_endpoint = asio::ip::udp::endpoint(
             listen_address,
             multicast_port
@@ -53,8 +56,15 @@ private:
                 std::size_t length
             ) {
                 if (error_code) {
-                    std::cerr << "error receiving data: " << error_code << std::endl;
+                    BOOST_LOG_TRIVIAL(error) << boost::format(
+                        "error receiving data; error_code=%1%\n") % error_code;
+
+                    // TODO: shall we treat this as an unrecoverable error?
+                    //   If not, we should call do_receive again.
                 } else {
+                    BOOST_LOG_TRIVIAL(info) << boost::format(
+                        "data received; length=%1%\n") % length;
+
                     player_->AddData(data_.data(), length);
                     do_receive();
                 }
