@@ -5,13 +5,6 @@ The playback servers runs on the Raspberry Pi, and it listens to audio packets s
 
 ## Quick Start
 
-Clone the repository:
-
-```bash
-BASEDIR=$(pwd)
-git clone https://github.com/betabandido/mac2rpi_playback_server.git
-```
-
 Install dependencies:
 
 ```bash
@@ -29,11 +22,18 @@ cd portaudio
 sudo make install
 ```
 
+Clone the repository:
+
+```bash
+BASEDIR=$(pwd)
+git clone https://github.com/betabandido/mac2rpi_playback_server.git
+```
+
 Compile the playback server:
 
 ```bash
 cd ${BASEDIR}/mac2rpi_playback_server
-scons
+cmake . && make
 ```
 
 Install and enable the service:
@@ -51,3 +51,13 @@ sudo systemctl start mac2rpi_playback_server.service
 Follow [this guide](https://www.hifiberry.com/build/documentation/configuring-linux-3-18-x/) to set up a [HiFiBerry](https://www.hifiberry.com/products/) device.
 
 *The playback server does not require a HiFiBerry (any device with ALSA support should work).*
+
+## Development
+
+### Running Unit Tests
+
+To run the unit tests, execute:
+
+```bash
+BUILD_ONLY_TESTS=1 cmake . && make && ctest --verbose
+```

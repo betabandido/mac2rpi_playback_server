@@ -9,11 +9,13 @@
 
 using namespace std::chrono_literals;
 
+static const asio::ip::address multicastAddress{
+    asio::ip::make_address("239.255.1.1")
+};
+static constexpr unsigned short multicastPort = 30001;
+
 static void sender(asio::io_context& io_context, const std::vector<char>& data) {
-    asio::ip::udp::endpoint endpoint(
-        boost::asio::ip::make_address("239.255.0.1"),
-        30001
-    );
+    asio::ip::udp::endpoint endpoint(multicastAddress, multicastPort);
     asio::ip::udp::socket socket(io_context, endpoint.protocol());
 
     for (auto it = std::begin(data); it < std::end(data);) {
@@ -60,8 +62,8 @@ BOOST_AUTO_TEST_CASE(test_receiver_receives_data)
     receiver r(
         io_service,
         asio::ip::make_address("0.0.0.0"),
-        asio::ip::make_address("239.255.0.1"),
-        30001,
+        multicastAddress,
+        multicastPort,
         player
     );
 
@@ -82,8 +84,8 @@ BOOST_AUTO_TEST_CASE(test_receiver_can_receive_multiple_datagrams)
     receiver r(
         io_service,
         asio::ip::make_address("0.0.0.0"),
-        asio::ip::make_address("239.255.0.1"),
-        30001,
+        multicastAddress,
+        multicastPort,
         player
     );
 
