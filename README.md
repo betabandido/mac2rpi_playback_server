@@ -1,7 +1,7 @@
-# mac2rpi_audio
+# mac2rpi_playback_server
 Solution to stream audio from a Mac to a Raspberry Pi.
 
-The playback servers runs on the Raspberry Pi, and it listens to audio packets sent by [the plugin](https://github.com/betabandido/mac2rpi_coreaudio_plugin) running on the Mac.
+The playback server runs on the Raspberry Pi and it listens to audio packets sent by [the plugin](https://github.com/betabandido/mac2rpi_coreaudio_plugin) running on the Mac.
 
 ## Quick Start
 
