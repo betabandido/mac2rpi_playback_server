@@ -10,6 +10,8 @@ int main() {
         asio::io_service io_service;
 
         auto player = std::make_shared<DefaultPlayer>();
+        std::thread player_thread([&]() { player->Play(); });
+        player_thread.detach();
 
         receiver r(
             io_service,

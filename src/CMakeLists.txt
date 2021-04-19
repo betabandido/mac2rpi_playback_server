@@ -11,7 +11,7 @@ find_package(Threads REQUIRED)
 
 if (Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
-    add_executable(mac2rpi_playback_server main.cpp)
+    add_executable(mac2rpi_playback_server main.cpp default_player.cpp)
     set_target_properties(mac2rpi_playback_server PROPERTIES LINKER_LANGUAGE CXX)
     target_link_libraries(
             mac2rpi_playback_server

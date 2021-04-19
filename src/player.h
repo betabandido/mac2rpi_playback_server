@@ -1,6 +1,8 @@
 #ifndef MAC2RPI_PLAYBACK_SERVER_PLAYER_H
 #define MAC2RPI_PLAYBACK_SERVER_PLAYER_H
 
+#include <cstddef>
+
 class Player {
 public:
     virtual ~Player() = default;
