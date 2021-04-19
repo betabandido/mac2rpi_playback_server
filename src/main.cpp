@@ -7,6 +7,7 @@
 
 int main() {
     try {
+        pa::AutoSystem auto_system;
         asio::io_service io_service;
 
         auto player = std::make_shared<DefaultPlayer>();
