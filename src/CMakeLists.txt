@@ -15,8 +15,9 @@ if (Boost_FOUND)
     set_target_properties(mac2rpi_playback_server PROPERTIES LINKER_LANGUAGE CXX)
     target_link_libraries(
             mac2rpi_playback_server
-             portaudiocpp
+            portaudiocpp
             ${Boost_LIBRARIES}
             Threads::Threads
     )
+    install(TARGETS mac2rpi_playback_server DESTINATION bin)
 endif ()

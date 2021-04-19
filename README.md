@@ -36,7 +36,15 @@ cd ${BASEDIR}/mac2rpi_playback_server
 cmake . && make
 ```
 
-Install and enable the service:
+
+
+To install the resulting binary run the follow command. The binary file will be installed by default under `/usr/local/bin`. Use [CMAKE_INSTALL_PREFIX](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html#variable:CMAKE_INSTALL_PREFIX) to override this value.
+
+```bash
+sudo make install
+```
+
+Finally enable the service so that the playback server runs every time the Raspberry Pi boots:
 
 ```bash
 sudo cp script/mac2rpi_playback_server.service /etc/systemd/system/
@@ -44,7 +52,7 @@ sudo systemctl enable mac2rpi_playback_server.service
 sudo systemctl start mac2rpi_playback_server.service
 ```
 
-**NOTE**: the service file should be edited to include the path to the server executable (`ExecStart` field).
+**NOTE**: the service file might need to be edited if the installation path has been overridden (update `ExecStart` field).
 
 ## HiFiBerry
 
